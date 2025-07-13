@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@racing-digital/jockey-finder": [
+        "apps/racing-digital/src/libs/jockey-finder/src/index.ts"
+      ],
+      "@racing-digital/pipes": [
+        "apps/racing-digital/src/libs/pipes/src/index.ts"
+      ],
+      "@racing-digital/race-data": [
+        "apps/racing-digital/src/libs/race-data/src/index.ts"
+      ],
+      "@racing-digital/races-ui": [
+        "apps/racing-digital/src/libs/races-ui/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,101 @@
+@if (races$ | async; as races) {
+<lib-jockey-finder [(visible)]="jockeyFinderOpen" [races]="races" />
+
+<p-table
+  #races
+  [value]="races"
+  [paginator]="true"
+  [rows]="10"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[10, 20, 50]"
+  stripedRows
+  [globalFilterFields]="[
+    'race',
+    'raceDate',
+    'racecourse',
+    'jockey',
+    'horse',
+    'notes'
+  ]"
+>
+  <ng-template #caption>
+    <div class="flex">
+      <p-button (click)="showJockeyFinder()">Jockey Finder</p-button>
+      <p-iconfield iconPosition="left" class="ml-auto">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          (input)="applyFilterGlobal($event, 'contains')"
+          placeholder="Filter Races"
+        />
+      </p-iconfield>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th style="width: 20%" pSortableColumn="race">
+        <div class="flex items-center gap-2">
+          Race
+          <p-sortIcon field="race" />
+        </div>
+      </th>
+      <th style="width: 10%" pSortableColumn="raceDate">
+        <div class="flex items-center gap-2">
+          Date
+          <p-sortIcon field="date" />
+        </div>
+      </th>
+      <th style="width: 15%" pSortableColumn="racecourse">
+        <div class="flex items-center gap-2">
+          Race Course
+          <p-sortIcon field="racecourse" />
+        </div>
+      </th>
+      <th style="width: 15%" pSortableColumn="jockey">
+        <div class="flex items-center gap-2">
+          Jockey<p-sortIcon field="jockey" />
+        </div>
+      </th>
+      <th style="width: 10%" pSortableColumn="horse">
+        <div class="flex items-center gap-2">
+          Horse<p-sortIcon field="horse" />
+        </div>
+      </th>
+      <th style="width: 7.5%" pSortableColumn="finishingPosition">
+        <div class="flex items-center gap-2">
+          Placed<p-sortIcon field="finishingPosition" />
+        </div>
+      </th>
+      <th style="width: 15%" pSortableColumn="notes">
+        <div class="flex items-center gap-2">
+          Notes <p-sortIcon field="notes" />
+        </div>
+      </th>
+      <th style="width: 10%"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-race>
+    <tr>
+      <td>{{ race.race.slice(0, 50) }}</td>
+      <td>{{ race.raceDate | date }}</td>
+      <td>{{ race.racecourse }}</td>
+      <td>{{ race.jockey }}</td>
+      <td>{{ race.horse }}</td>
+      <td>{{ race.finishingPosition | ordinal }}</td>
+      <td>{{ race.notes?.slice(0, 50) }}</td>
+      <td>
+        <button pButton (click)="selectRace(race)">
+          <i class="pi pi-pencil cursor-pointer"></i>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+} @else {
+<p-progress-spinner />
+}
+
+<lib-race [(race)]="selectedRace" />

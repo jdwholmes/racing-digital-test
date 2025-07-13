@@ -1,0 +1,7 @@
+@import "primeicons/primeicons.css";
+@import "tailwindcss";
+
+body {
+  font-size: 14px;
+  font-family: "Inter var", sans-serif;
+}

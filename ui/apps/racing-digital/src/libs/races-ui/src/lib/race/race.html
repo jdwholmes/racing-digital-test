@@ -1,0 +1,25 @@
+<p-dialog
+  header="Update Notes"
+  [modal]="true"
+  [visible]="!!race()"
+  [style]="{ width: '25rem' }"
+>
+  <span class="p-text-secondary block mb-4">Race: {{race()?.race}}.</span>
+  <div class="flex items-center gap-4 mb-8">
+    <textarea rows="5" cols="30" pTextarea [(ngModel)]="notes"></textarea>
+  </div>
+  <div class="flex justify-end gap-2">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      (click)="race.set(undefined)"
+      [disabled]="loading"
+    />
+    <p-button
+      label="Save"
+      (click)="updateNotes()"
+      [disabled]="race()?.notes === notes"
+      [loading]="loading"
+    />
+  </div>
+</p-dialog>
