@@ -10,12 +10,14 @@
       [(ngModel)]="selectedHorses"
       placeholder="Select a Horse"
       class="w-full md:w-56"
+      [showClear]="true"
     />
     <p-select
       [options]="racecourses()"
       [(ngModel)]="selectedRacecourse"
       placeholder="Select a Racecourse"
       class="w-full md:w-56"
+      [showClear]="true"
     />
 
     @if (filteredRaces().length > 0) {
