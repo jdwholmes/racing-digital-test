@@ -38,6 +38,7 @@
    - Navigate to: [http://localhost:5001/swagger](http://localhost:5001/swagger)
    - You should see the API documentation via Swagger.
    - Check your database — it should now have a `RaceResults` table pre-populated with seed data.
+   - **Note**: I have added a 1.5s delay to the API calls to simulate a more realistic API approach (which in turn will show the loading spinners)
 
 ---
 
